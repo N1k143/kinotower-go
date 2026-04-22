@@ -4,14 +4,19 @@ import (
 	"net/http"
 
 	mw "github.com/N1k143/kinotower-go/internal/core/middleware"
+	film_handler "github.com/N1k143/kinotower-go/internal/features/films/handler"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
 
-type Router struct{}
+type Router struct {
+	filmHandler film_handler.FilmHandler
+}
 
-func NewRouter() *Router {
-	return &Router{}
+func NewRouter(filmHandler film_handler.FilmHandler) *Router {
+	return &Router{
+		filmHandler: filmHandler,
+	}
 }
 
 func (r *Router) RegisterRoute() http.Handler {

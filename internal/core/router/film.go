@@ -6,12 +6,10 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func (r *Router) filmRoutes() http.Handler{
+func (r *Router) filmRoutes() http.Handler {
 	router := chi.NewRouter()
 
-	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Films"))
-	})
+	router.Get("/", r.filmHandler.GetFilms)
 
 	return router
 }
