@@ -15,3 +15,7 @@ migrate-up:
 
 migrate-down:
 	docker compose -f docker-compose.yml run --rm kinotower-postgres-migrate -path=/migrations/ -database "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@kinotower-postgres:5432/$(POSTGRES_DB)?sslmode=disable" down -all
+
+kinotower-run:
+	go mod tidy
+	go run cmd/server/main.go
